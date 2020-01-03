@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 
 from django.core.paginator import Paginator
-from .models import creation, slider, testimonial
+from .models import creation, slider, testimonial,post
 from .forms import contactForm
 
 # Create your views here.
@@ -55,3 +55,9 @@ def contact(request):
 
 def thanks(request):
     return render(request, 'creations/thanks.html')
+
+
+
+def blogposts(request):
+    posts = post.objects.all()
+    return render(request,'creattions/posts.html',{'posts':posts})

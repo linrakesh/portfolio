@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -49,7 +51,7 @@ class slider(models.Model):
     slider_url = models.URLField()
     slider_image = models.ImageField('slider image', upload_to='sliders')
 
-    def __str__(self):
+    def __ster__(self):
         return self.slider_name
 
     def get_absolute_url(self):
@@ -63,5 +65,31 @@ class testimonial(models.Model):
 
     def __str__(self):
         return self.title
+    
     def get_absolute_url(self):
         return reverse('testimonial_detail', kwargs={"pk":self.pk})
+
+
+class post(models.Model):
+
+    STATUS_CHOICES = (('draft','Draft'),('published','Published'))
+
+    title = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=250,unique_for_date='publish')
+    author = models.ForeignKey(User,on_delete=models.CASCADE)  
+    body    = models.TextField()
+    publish = models.DateTimeField(default = timezone.now)   
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now= True)
+    status = models.CharField(
+        max_length=15, choices=STATUS_CHOICES, default='draft')
+    featured_image = models.ImageField(upload_to ='blogImages',default="")
+
+    class Meta:
+        ordering = ('-publish',)
+    
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('post_detail', kwargs={"pk": self.pk})
