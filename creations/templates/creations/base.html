@@ -1,0 +1,78 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bxslider.css' %}">
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+        {% block title %} {% endblock title%}
+    </head>
+
+    <body>
+        <div id ="branding">
+        <div class="container">
+            <div class="logo">
+
+                <a href= "{% url 'home' %}"><h1>Resume<span style="color:red">.</span></h1></a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="#">awards</a></li>
+                    <li><a href="#">Articles</a></li>
+                    <li><a href="{% url 'testimonial' %}">Testimonials</a></li>
+                    <li><a href="{% url 'contactus' %}">Contact us</a></li>
+                    <li><a href="{% url 'contact1' %}">Contact Form</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+        <!--end of branding -->
+        <div id="bxslider">
+            {% for slider in sliders %}
+            <div><img class=" responsive" src="{{slider.slider_image.url }}" alt="">
+            </div>
+            {% endfor %}
+        </div>
+        {% block email %}
+        {% endblock email%}
+        <!--------portfolio section start from here-->
+        {% block portfolio %}
+        {% endblock portfolio %}
+        <!--end of portfolio section-->
+
+        <!--contact us -->
+        {% block contactus %}
+        {% endblock contactus%}
+
+        <div id="footer">
+            <div class="container">
+                <div class="social-media">
+                    <a href="#">facebook</a>
+                    <a href="#">twitter</a>
+                    <a href="#">YouTube</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">github</a>
+                </div>
+            </div>
+            <div class="container">
+                <p>All rights reserved to <a href="https://binarynote.com" target="_blank">binarynote.com</a></p>
+            </div>
+        </div>
+
+        <script src="{%  static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/jquery.bxslider.js' %}"></script>
+        <script>
+
+            $(document).ready(function () {
+                $('#bxslider').bxSlider();
+            });
+
+        </script>
+    </body>
+
+</html>

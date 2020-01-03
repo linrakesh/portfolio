@@ -1,0 +1,26 @@
+{% extends 'creations/base.html' %}
+{% block title %}
+<title>Contact us page </title>
+{% endblock title %}
+
+{% block contactus %}
+<div id="contact">
+    <div class="container">
+        <h1>Contact Us</h1>
+    </div>
+    <div class="container contact-us">
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="subject">Message Subject</label>
+            <input type="text" name="subject" id="subject" placeholder="Enter Email Subject" required>
+            <label for="name">Your Name</label>
+            <input type="text" name="name" id="name" placeholder="Enter your name here" required>
+            <label for="email">Email ID</label>
+            <input type="email" name="email" id="email" placeholder="Enter your valid email" required>
+            <label for="msg">Message</label>
+            <textarea name="msg" id="msg" cols="30" rows="10"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock contactus%}
