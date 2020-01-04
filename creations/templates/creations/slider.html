@@ -1,3 +1,7 @@
-{% for post in posts %}
-<img class="responsive" src="{{post.slider_image.url }}" alt="">
-{% endfor %}
+{% load option_tags %}
+<div id="bxslider">
+    {% for slider in sliders %}
+    <div><img class=" responsive" src="{{slider.slider_image.url }}" alt="">
+    </div>
+    {% endfor %}
+</div>

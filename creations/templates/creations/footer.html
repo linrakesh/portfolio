@@ -1,0 +1,31 @@
+{% load option_tags %}
+{% load staticfiles %}
+<div id="footer">
+    {% for post in options %}
+    <div class="container">
+        <div class="social-media">
+            <a href="{{ post.facebook }}" target="_blank" >facebook</a>
+            <a href="{{ post.twiter }}" target="_blank">twitter</a>
+            <a href="{{ post.youtube }}" target="_blank">YouTube</a>
+            <a href="{{ post.instagram }}" target="_blank">Instagram</a>
+            <a href="{{ post.github }}" target="_blank">github</a>
+        </div>
+    </div>
+    <div class="container">
+        <p>All rights reserved to <a href="https://binarynote.com" target="_blank">binarynote.com</a></p>
+    </div>
+    {% endfor %}
+</div>
+
+<script src="{%  static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery.bxslider.js' %}"></script>
+<script>
+
+    $(document).ready(function () {
+        $('#bxslider').bxSlider();
+    });
+
+</script>
+</body>
+
+</html>
